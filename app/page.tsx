@@ -522,8 +522,8 @@ export default function Home() {
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Cheque/Ref. No."]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Description"]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["CR/DR"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(₹)"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(₹)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(INR)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(INR)"]}</td>
         </>
       );
     } else if (bank === "IDFC") {
