@@ -514,6 +514,202 @@ function generateHDFCData(count: number) {
   });
 }
 
+function generateKotakData(count: number) {
+  let balance = randomInt(10000, 100000);
+  const data = [];
+  let lastDate = new Date();
+  
+  // Add more variety to amounts
+  const amountRanges = [
+    [100, 1000],    // Small transactions
+    [1000, 5000],   // Medium transactions
+    [5000, 20000],  // Large transactions
+    [20000, 50000], // Very large transactions
+  ];
+  
+  // Generate data in chronological order (oldest first) for correct balance calculation
+  for (let i = 0; i < count; i++) {
+    const txnDate = new Date(lastDate.getTime() - randomInt(1, 72) * 60 * 60 * 1000);
+    lastDate = txnDate;
+    const crdr = randomCRDR();
+    
+    // Use different amount ranges for variety
+    const amountRange = amountRanges[randomInt(0, amountRanges.length - 1)];
+    const amount = randomInt(amountRange[0], amountRange[1]);
+    
+    // Update balance based on transaction type
+    if (crdr === "CR") {
+      balance += amount; // Credit increases balance
+    } else {
+      balance -= amount; // Debit decreases balance
+    }
+    
+    data.push({
+      "Sl. No.": i + 1,
+      "Date": formatDateKotak(txnDate),
+      "Description": randomDescKotak(),
+      "Chq/ Ref number": randomChqRefNoKotak(),
+      "Amount": formatAmount(amount),
+      "Dr/Cr": crdr,
+      "Balance": formatAmount(balance),
+      "Balance Dr/Cr": balance >= 0 ? "CR" : "DR"
+    });
+  }
+  
+  // Sort by date in descending order (latest first) for display
+  return data.sort((a, b) => {
+    function parseDate(str: string) {
+      const [d, m, y] = str.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+    const da = parseDate(a["Date"]);
+    const db = parseDate(b["Date"]);
+    return db.getTime() - da.getTime();
+  });
+}
+
+function formatDateKotak(date: Date) {
+  // Format: DD-MM-YYYY (e.g., 31-10-2024)
+  const d = date.getDate().toString().padStart(2, '0');
+  const m = (date.getMonth() + 1).toString().padStart(2, '0');
+  const y = date.getFullYear();
+  return `${d}-${m}-${y}`;
+}
+
+function randomDescKotak() {
+  const businessTerms = [
+    "SALARY", "RAW MATERIAL", "SALES", "PACKAGING EXP", "LOGISTIC EXP", "RENT", "UTILITIES", 
+    "MARKETING", "ADVERTISING", "INSURANCE", "MAINTENANCE", "REPAIRS", "CONSULTING", 
+    "LEGAL FEES", "ACCOUNTING", "TRAVEL EXP", "MEALS", "OFFICE SUPPLIES", "EQUIPMENT", 
+    "SOFTWARE", "LICENSING", "COMMISSION", "BONUS", "REFUND", "CASHBACK", "REWARDS",
+    "INVOICE", "PAYMENT", "SETTLEMENT", "ADVANCE", "LOAN", "EMI", "INTEREST", "DIVIDEND",
+    "INVESTMENT", "MUTUAL FUND", "STOCK TRADING", "GOLD", "FOREIGN EXCHANGE"
+  ];
+  
+  const descs = [
+    // UPI Transactions with business messages
+    `UPI/FACEBOOK INDIA/${randomInt(100000000000, 999999999999)}/Upi Transaction/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/YASH SARAWGI/${randomInt(100000000000, 999999999999)}/Donation/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/AMAZON/${randomInt(100000000000, 999999999999)}/Online Shopping/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/FLIPKART/${randomInt(100000000000, 999999999999)}/Online Shopping/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/SWIGGY/${randomInt(100000000000, 999999999999)}/Food Delivery/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/ZOMATO/${randomInt(100000000000, 999999999999)}/Food Delivery/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/PAYTM/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/PHONEPE/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/GOOGLE PAY/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/AMAZON PAY/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/BHIM/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/CRED/${randomInt(100000000000, 999999999999)}/Bill Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/WHATSAPP PAY/${randomInt(100000000000, 999999999999)}/Digital Payment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/FREECHARGE/${randomInt(100000000000, 999999999999)}/Recharge/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MYNTRA/${randomInt(100000000000, 999999999999)}/Online Shopping/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/NYKAA/${randomInt(100000000000, 999999999999)}/Online Shopping/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/BOOKMYSHOW/${randomInt(100000000000, 999999999999)}/Entertainment/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IRCTC/${randomInt(100000000000, 999999999999)}/Railway Booking/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/GOIBIBO/${randomInt(100000000000, 999999999999)}/Travel Booking/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MAKEMYTRIP/${randomInt(100000000000, 999999999999)}/Travel Booking/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/DOMINOS/${randomInt(100000000000, 999999999999)}/Food Delivery/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/STARBUCKS/${randomInt(100000000000, 999999999999)}/Food & Beverages/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MCDONALD'S/${randomInt(100000000000, 999999999999)}/Food Delivery/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/RELIANCE FRESH/${randomInt(100000000000, 999999999999)}/Grocery/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/SHELL PETROL PUMP/${randomInt(100000000000, 999999999999)}/Fuel/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/HP PETROL PUMP/${randomInt(100000000000, 999999999999)}/Fuel/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/BP PETROL PUMP/${randomInt(100000000000, 999999999999)}/Fuel/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/INDIAN OIL/${randomInt(100000000000, 999999999999)}/Fuel/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // RTGS Transactions
+    `RTGS HDFCR${randomInt(100000000000000, 999999999999999)} INKHUB HDFC0000240/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `RTGS ICICR${randomInt(100000000000000, 999999999999999)} INKHUB ICIC0000399/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `RTGS SBIR${randomInt(100000000000000, 999999999999999)} INKHUB SBIN0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `RTGS AXISR${randomInt(100000000000000, 999999999999999)} INKHUB AXIS0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // PCI Transactions
+    `PCI/${randomInt(1000, 9999)}/Fiverr com/NICOSIA${randomInt(100000, 999999)}/${randomInt(10, 23)}:${randomInt(10, 59)}/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `PCI/${randomInt(1000, 9999)}/Upwork com/NICOSIA${randomInt(100000, 999999)}/${randomInt(10, 23)}:${randomInt(10, 59)}/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `PCI/${randomInt(1000, 9999)}/Freelancer com/NICOSIA${randomInt(100000, 999999)}/${randomInt(10, 23)}:${randomInt(10, 59)}/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Other transaction types
+    `PaidViaKotakApp/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bikerepair/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPILITEderegist/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Electric wire/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Setup of UPI Li/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Test/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Pay to Merchant/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Girlfit/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `MB UPI/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Devasalary/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mombatti/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // NEFT Transactions
+    `NEFT/${randomInt(100000000000, 999999999999)}/ICICI0000399/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/${randomInt(100000000000, 999999999999)}/SBI0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/${randomInt(100000000000, 999999999999)}/HDFC0000240/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/${randomInt(100000000000, 999999999999)}/AXIS0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // IMPS Transactions
+    `IMPS/${randomInt(100000000000, 999999999999)}/KOTAK0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/${randomInt(100000000000, 999999999999)}/KOTAK0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // ATM Transactions
+    "ATM Withdrawal/KOTAK BANK",
+    "ATM Cash Withdrawal/KOTAK BANK",
+    "ATM Mini Statement/KOTAK BANK",
+    "ATM Balance Enquiry/KOTAK BANK",
+    
+    // Bill Payments
+    `Bill Payment/ELECTRICITY/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/GAS/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/WATER/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INTERNET/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/MOBILE/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/DTH/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INSURANCE/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/CREDIT CARD/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Salary and Credits
+    `Salary Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Interest Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `FD Maturity/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Dividend Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Refund Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Cashback Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Reward Points Credit/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Mobile Recharges
+    `Mobile Recharge/AIRTEL/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/JIO/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/VI/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/BSNL/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Investment and Trading
+    `Mutual Fund Investment/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Stock Trading/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `SIP Investment/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Gold Investment/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // International Transactions
+    `International Transfer/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Foreign Exchange/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `International Card Usage/KOTAK BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+  ];
+  return descs[randomInt(0, descs.length - 1)];
+}
+
+function randomChqRefNoKotak() {
+  const refTypes = [
+    `UPI-${randomInt(100000000000000, 999999999999999)}`,
+    `RTGSINW-${randomInt(100000000000000, 999999999999999)}`,
+    `NEFTINW-${randomInt(100000000000000, 999999999999999)}`,
+    `IMPSINW-${randomInt(100000000000000, 999999999999999)}`,
+    `PCI-${randomInt(100000000000000, 999999999999999)}`,
+    randomInt(100000000000, 999999999999).toString(),
+    randomInt(10000000000, 99999999999).toString(),
+    randomInt(1000000000, 9999999999).toString(),
+  ];
+  return refTypes[randomInt(0, refTypes.length - 1)];
+}
+
 export default function Home() {
   const [bank, setBank] = useState("ICICI");
   const [count, setCount] = useState(10);
@@ -526,6 +722,8 @@ export default function Home() {
       setData(generateICICIData(count));
     } else if (bank === "IDFC") {
       setData(generateIDFCData(count));
+    } else if (bank === "KOTAK") {
+      setData(generateKotakData(count));
     } else {
       setData(generateHDFCData(count));
     }
@@ -549,6 +747,8 @@ export default function Home() {
       return ["No.", "Transaction ID", "Value Date", "Txn Posted Date", "Cheque/Ref. No.", "Description", "CR/DR", "Transaction Amount(INR)", "Available Balance(INR)"];
     } else if (bank === "IDFC") {
       return ["Transaction Date", "Value Date", "Particulars", "Cheque No.", "Debit", "Credit", "Balance"];
+    } else if (bank === "KOTAK") {
+      return ["Sl. No.", "Date", "Description", "Chq/ Ref number", "Amount", "Dr/Cr", "Balance", "Dr/Cr"];
     } else {
       return ["Date", "Narration", "Chq./Ref.No.", "Value Dt", "Withdrawal Amt.", "Deposit Amt.", "Closing Balance"];
     }
@@ -579,6 +779,19 @@ export default function Home() {
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Debit"]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Credit"]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Balance"]}</td>
+        </>
+      );
+    } else if (bank === "KOTAK") {
+      return (
+        <>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Sl. No."]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Date"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Description"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Chq/ Ref number"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Amount"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Dr/Cr"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Balance"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Balance Dr/Cr"]}</td>
         </>
       );
     } else {
@@ -647,40 +860,51 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Bank Name Display */}
+        {data.length > 0 && (
+          <div className="mb-4 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 bg-white rounded-lg shadow-sm px-6 py-3 inline-block">
+              {bank} Bank Statement
+            </h2>
+          </div>
+        )}
+
         {/* Data Display */}
         {filteredData.length > 0 ? (
           <>
             <div className="w-full flex items-center mb-2">
-              <span className="inline-block bg-indigo-100 text-indigo-700 font-semibold rounded px-3 sm:px-4 py-1 text-sm sm:text-base shadow-sm">
-                {bank === "ICICI" ? "ICICI Bank" : bank === "IDFC" ? "IDFC Bank" : "HDFC Bank"}
+              <span className="text-sm text-gray-600">
+                Showing {filteredData.length} of {data.length} rows
               </span>
             </div>
-            <div className="w-full h-full overflow-auto mt-2">
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-xs sm:text-sm bg-white rounded-2xl overflow-hidden shadow-lg min-w-[800px]">
-                  <thead className="sticky top-0 z-10">
-                    <tr>
-                      {getTableHeaders().map((header) => (
-                        <th key={header} className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-left border-b border-gray-200 bg-gray-50 font-bold text-xs sm:text-sm">
-                          {header}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredData.map((row, i) => (
-                      <tr key={i} className="last:border-b-0 hover:bg-gray-50">
-                        {renderTableRow(row)}
-                      </tr>
+            <div className="flex-1 overflow-auto">
+              <table className="w-full bg-white rounded-lg shadow-sm">
+                <thead className="bg-gray-50 sticky top-0">
+                  <tr>
+                    {getTableHeaders().map((header, index) => (
+                      <th
+                        key={index}
+                        className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-700 uppercase tracking-wider border-b border-gray-200"
+                      >
+                        {header}
+                      </th>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-2 text-xs sm:text-sm text-indigo-600 text-right">
-                Showing {filteredData.length} of {data.length} rows
-              </div>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.map((row, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      {renderTableRow(row)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </>
+        ) : data.length > 0 ? (
+          <div className="flex-1 flex items-center justify-center text-gray-500 text-base sm:text-lg text-center px-4">
+            No transactions found matching your search
+          </div>
         ) : (
           <div className="flex-1 flex items-center justify-center text-gray-500 text-base sm:text-lg text-center px-4">
             Click "Generate" to create dummy bank statement data
@@ -704,6 +928,7 @@ export default function Home() {
                     <option value="ICICI">ICICI Bank</option>
                     <option value="IDFC">IDFC Bank</option>
                     <option value="HDFC">HDFC Bank</option>
+                    <option value="KOTAK">Kotak Bank</option>
                   </select>
                 </div>
                 <div>
@@ -736,7 +961,7 @@ export default function Home() {
             </div>
           </div>
         )}
-      </div>
+    </div>
     </main>
   );
 }
