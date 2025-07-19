@@ -39,28 +39,37 @@ function randomCRDR() {
 }
 
 function randomDescICICI() {
+  const businessTerms = [
+    "SALARY", "RAW MATERIAL", "SALES", "PACKAGING EXP", "LOGISTIC EXP", "RENT", "UTILITIES", 
+    "MARKETING", "ADVERTISING", "INSURANCE", "MAINTENANCE", "REPAIRS", "CONSULTING", 
+    "LEGAL FEES", "ACCOUNTING", "TRAVEL EXP", "MEALS", "OFFICE SUPPLIES", "EQUIPMENT", 
+    "SOFTWARE", "LICENSING", "COMMISSION", "BONUS", "REFUND", "CASHBACK", "REWARDS",
+    "INVOICE", "PAYMENT", "SETTLEMENT", "ADVANCE", "LOAN", "EMI", "INTEREST", "DIVIDEND",
+    "INVESTMENT", "MUTUAL FUND", "STOCK TRADING", "GOLD", "FOREIGN EXCHANGE"
+  ];
+  
   const descs = [
-    // UPI Transactions
-    "UPI/IN/1234567890/Paytm/ICICI Bank",
-    "UPI/IN/9876543210/PhonePe/ICICI Bank",
-    "UPI/IN/5556667778/Google Pay/ICICI Bank",
-    "UPI/IN/1122334455/Amazon Pay/ICICI Bank",
-    "UPI/IN/9988776655/BHIM/ICICI Bank",
-    "UPI/IN/4433221100/CRED/ICICI Bank",
-    "UPI/IN/7788990011/WhatsApp Pay/ICICI Bank",
-    "UPI/IN/6677889900/Freecharge/ICICI Bank",
+    // UPI Transactions with business messages
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/PAYTM/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/PHONEPE/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/GOOGLE PAY/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/AMAZON PAY/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/BHIM/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/CRED/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/WHATSAPP PAY/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/IN/${randomInt(1000000000, 9999999999)}/FREECHARGE/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // IMPS Transactions
-    "IMPS/Ref/9876543210/ICICI Bank",
-    "IMPS/Ref/1234567890/ICICI Bank",
-    "IMPS/Ref/5556667778/ICICI Bank",
-    "IMPS/Ref/9988776655/ICICI Bank",
+    `IMPS/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // NEFT Transactions
-    "NEFT/Ref/1122334455/ICICI Bank",
-    "NEFT/Ref/5566778899/ICICI Bank",
-    "NEFT/Ref/9988776655/ICICI Bank",
-    "NEFT/Ref/4433221100/ICICI Bank",
+    `NEFT/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/Ref/${randomInt(1000000000, 9999999999)}/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // ATM Transactions
     "ATM Withdrawal/ICICI Bank",
@@ -68,134 +77,126 @@ function randomDescICICI() {
     "ATM Mini Statement/ICICI Bank",
     "ATM Balance Enquiry/ICICI Bank",
     
-    // POS Transactions
-    "POS/Swiggy/ICICI Bank",
-    "POS/Zomato/ICICI Bank",
-    "POS/Amazon/ICICI Bank",
-    "POS/Flipkart/ICICI Bank",
-    "POS/Reliance Fresh/ICICI Bank",
-    "POS/Dominos/ICICI Bank",
-    "POS/Starbucks/ICICI Bank",
-    "POS/McDonald's/ICICI Bank",
-    "POS/Shell Petrol Pump/ICICI Bank",
-    "POS/HP Petrol Pump/ICICI Bank",
-    "POS/BP Petrol Pump/ICICI Bank",
-    "POS/Indian Oil/ICICI Bank",
+    // POS Transactions with business context
+    `POS/SWIGGY/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/ZOMATO/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/AMAZON/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/FLIPKART/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/RELIANCE FRESH/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/DOMINOS/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/STARBUCKS/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/MCDONALD'S/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/SHELL PETROL PUMP/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/HP PETROL PUMP/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/BP PETROL PUMP/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/INDIAN OIL/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // Online Shopping
-    "Online Shopping/Amazon/ICICI Bank",
-    "Online Shopping/Flipkart/ICICI Bank",
-    "Online Shopping/Myntra/ICICI Bank",
-    "Online Shopping/Nykaa/ICICI Bank",
-    "Online Shopping/BookMyShow/ICICI Bank",
-    "Online Shopping/IRCTC/ICICI Bank",
-    "Online Shopping/Goibibo/ICICI Bank",
-    "Online Shopping/MakeMyTrip/ICICI Bank",
+    // Online Shopping with business messages
+    `Online Shopping/AMAZON/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/FLIPKART/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/MYNTRA/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/NYKAA/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/BOOKMYSHOW/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/IRCTC/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/GOIBIBO/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Online Shopping/MAKEMYTRIP/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // Bill Payments
-    "Bill Payment/Electricity/ICICI Bank",
-    "Bill Payment/Gas/ICICI Bank",
-    "Bill Payment/Water/ICICI Bank",
-    "Bill Payment/Internet/ICICI Bank",
-    "Bill Payment/Mobile/ICICI Bank",
-    "Bill Payment/DTH/ICICI Bank",
-    "Bill Payment/Insurance/ICICI Bank",
-    "Bill Payment/Credit Card/ICICI Bank",
+    `Bill Payment/ELECTRICITY/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/GAS/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/WATER/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INTERNET/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/MOBILE/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/DTH/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INSURANCE/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/CREDIT CARD/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // Salary and Credits
-    "Salary Credit/ICICI Bank",
-    "Interest Credit/ICICI Bank",
-    "FD Maturity/ICICI Bank",
-    "Dividend Credit/ICICI Bank",
-    "Refund Credit/ICICI Bank",
-    "Cashback Credit/ICICI Bank",
-    "Reward Points Credit/ICICI Bank",
+    // Salary and Credits with business context
+    `Salary Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Interest Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `FD Maturity/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Dividend Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Refund Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Cashback Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Reward Points Credit/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // Mobile Recharges
-    "Mobile Recharge/Airtel/ICICI Bank",
-    "Mobile Recharge/Jio/ICICI Bank",
-    "Mobile Recharge/Vi/ICICI Bank",
-    "Mobile Recharge/BSNL/ICICI Bank",
+    `Mobile Recharge/AIRTEL/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/JIO/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/VI/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/BSNL/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // Investment and Trading
-    "Mutual Fund Investment/ICICI Bank",
-    "Stock Trading/ICICI Bank",
-    "SIP Investment/ICICI Bank",
-    "Gold Investment/ICICI Bank",
+    `Mutual Fund Investment/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Stock Trading/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `SIP Investment/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Gold Investment/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // International Transactions
-    "International Transfer/ICICI Bank",
-    "Foreign Exchange/ICICI Bank",
-    "International Card Usage/ICICI Bank",
+    `International Transfer/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Foreign Exchange/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `International Card Usage/ICICI Bank/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
   ];
   return descs[randomInt(0, descs.length - 1)];
 }
 
 function randomDescIDFC() {
+  const businessTerms = [
+    "SALARY", "RAW MATERIAL", "SALES", "PACKAGING EXP", "LOGISTIC EXP", "RENT", "UTILITIES", 
+    "MARKETING", "ADVERTISING", "INSURANCE", "MAINTENANCE", "REPAIRS", "CONSULTING", 
+    "LEGAL FEES", "ACCOUNTING", "TRAVEL EXP", "MEALS", "OFFICE SUPPLIES", "EQUIPMENT", 
+    "SOFTWARE", "LICENSING", "COMMISSION", "BONUS", "REFUND", "CASHBACK", "REWARDS",
+    "INVOICE", "PAYMENT", "SETTLEMENT", "ADVANCE", "LOAN", "EMI", "INTEREST", "DIVIDEND",
+    "INVESTMENT", "MUTUAL FUND", "STOCK TRADING", "GOLD", "FOREIGN EXCHANGE"
+  ];
+  
   const descs = [
-    // UPI/MOB Transactions
-    "UPI/MOB/202150132364/Test",
-    "UPI/MOB/435101240322/PAY BY WHATSAPP",
-    "UPI/MOB/100414001423/Mohit",
-    "UPI/MOB/123456789012/Amazon",
-    "UPI/MOB/987654321098/Zomato",
-    "UPI/MOB/555666777888/PhonePe",
-    "UPI/MOB/111222333444/Google Pay",
-    "UPI/MOB/777888999000/Paytm",
-    "UPI/MOB/444555666777/CRED",
-    "UPI/MOB/888999000111/BHIM",
-    "UPI/MOB/222333444555/Freecharge",
-    "UPI/MOB/666777888999/Amazon Pay",
-    "UPI/MOB/333444555666/WhatsApp Pay",
-    "UPI/MOB/999000111222/Myntra",
-    "UPI/MOB/555666777888/Nykaa",
-    "UPI/MOB/111222333444/BookMyShow",
-    "UPI/MOB/777888999000/IRCTC",
-    "UPI/MOB/444555666777/Goibibo",
-    "UPI/MOB/888999000111/MakeMyTrip",
-    "UPI/MOB/222333444555/Swiggy",
-    "UPI/MOB/666777888999/Dominos",
-    "UPI/MOB/333444555666/Starbucks",
-    "UPI/MOB/999000111222/McDonald's",
-    "UPI/MOB/555666777888/Reliance Fresh",
-    "UPI/MOB/111222333444/Flipkart",
-    "UPI/MOB/777888999000/Myntra",
-    "UPI/MOB/444555666777/Nykaa",
-    "UPI/MOB/888999000111/BookMyShow",
+    // UPI/MOB Transactions with business messages
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/PAYTM/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/PHONEPE/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/GOOGLE PAY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/AMAZON PAY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/BHIM/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/CRED/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/WHATSAPP PAY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/FREECHARGE/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/AMAZON/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/FLIPKART/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/MYNTRA/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/NYKAA/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/BOOKMYSHOW/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/IRCTC/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/GOIBIBO/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/MAKEMYTRIP/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/SWIGGY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/ZOMATO/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/DOMINOS/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/STARBUCKS/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/MCDONALD'S/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI/MOB/${randomInt(100000000000, 999999999999)}/RELIANCE FRESH/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // NEFT Transactions
-    "NEFT/N008253504045665/INKHUB/HDFC0000001",
-    "NEFT/N123456789012/ICICI0000001",
-    "NEFT/N987654321098/SBI0000001",
-    "NEFT/N555666777888/AXIS0000001",
-    "NEFT/N111222333444/KOTAK0000001",
-    "NEFT/N777888999000/YES0000001",
-    "NEFT/N444555666777/PNB0000001",
-    "NEFT/N888999000111/BOB0000001",
-    "NEFT/N222333444555/UNION0000001",
-    "NEFT/N666777888999/CANARA0000001",
+    // NEFT Transactions with business messages
+    `NEFT/N${randomInt(100000000000, 999999999999)}/ICICI0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/SBI0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/AXIS0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/KOTAK0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/YES0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/PNB0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/BOB0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/UNION0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT/N${randomInt(100000000000, 999999999999)}/CANARA0000001/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // Cheque Deposits
-    "BB/CHQ DEP/000003/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000004/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000005/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000006/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000007/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000008/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000009/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000010/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000011/IKAHDNJI/HDFC BANK LTD",
-    "BB/CHQ DEP/000012/IKAHDNJI/HDFC BANK LTD",
+    // Cheque Deposits with business context
+    `BB/CHQ DEP/${randomInt(100000, 999999)}/IKAHDNJI/HDFC BANK LTD/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `BB/CHQ DEP/${randomInt(100000, 999999)}/IKAHDNJI/ICICI BANK LTD/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `BB/CHQ DEP/${randomInt(100000, 999999)}/IKAHDNJI/SBI BANK LTD/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `BB/CHQ DEP/${randomInt(100000, 999999)}/IKAHDNJI/AXIS BANK LTD/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // IMPS Transactions
-    "IMPS/Ref/123456789012/IDFC0000001",
-    "IMPS/Ref/987654321098/IDFC0000001",
-    "IMPS/Ref/555666777888/IDFC0000001",
-    "IMPS/Ref/111222333444/IDFC0000001",
-    "IMPS/Ref/777888999000/IDFC0000001",
-    "IMPS/Ref/444555666777/IDFC0000001",
-    "IMPS/Ref/888999000111/IDFC0000001",
-    "IMPS/Ref/222333444555/IDFC0000001",
+    `IMPS/Ref/${randomInt(100000000000, 999999999999)}/IDFC0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(100000000000, 999999999999)}/IDFC0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(100000000000, 999999999999)}/IDFC0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS/Ref/${randomInt(100000000000, 999999999999)}/IDFC0000001/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // ATM Transactions
     "ATM Withdrawal/IDFC BANK",
@@ -203,55 +204,55 @@ function randomDescIDFC() {
     "ATM Mini Statement/IDFC BANK",
     "ATM Balance Enquiry/IDFC BANK",
     
-    // POS Transactions
-    "POS/Swiggy/IDFC BANK",
-    "POS/Zomato/IDFC BANK",
-    "POS/Amazon/IDFC BANK",
-    "POS/Flipkart/IDFC BANK",
-    "POS/Reliance Fresh/IDFC BANK",
-    "POS/Dominos/IDFC BANK",
-    "POS/Starbucks/IDFC BANK",
-    "POS/McDonald's/IDFC BANK",
-    "POS/Shell Petrol Pump/IDFC BANK",
-    "POS/HP Petrol Pump/IDFC BANK",
-    "POS/BP Petrol Pump/IDFC BANK",
-    "POS/Indian Oil/IDFC BANK",
+    // POS Transactions with business messages
+    `POS/SWIGGY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/ZOMATO/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/AMAZON/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/FLIPKART/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/RELIANCE FRESH/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/DOMINOS/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/STARBUCKS/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/MCDONALD'S/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/SHELL PETROL PUMP/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/HP PETROL PUMP/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/BP PETROL PUMP/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `POS/INDIAN OIL/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // Bill Payments
-    "Bill Payment/Electricity/IDFC BANK",
-    "Bill Payment/Gas/IDFC BANK",
-    "Bill Payment/Water/IDFC BANK",
-    "Bill Payment/Internet/IDFC BANK",
-    "Bill Payment/Mobile/IDFC BANK",
-    "Bill Payment/DTH/IDFC BANK",
-    "Bill Payment/Insurance/IDFC BANK",
-    "Bill Payment/Credit Card/IDFC BANK",
+    // Bill Payments with business context
+    `Bill Payment/ELECTRICITY/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/GAS/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/WATER/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INTERNET/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/MOBILE/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/DTH/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/INSURANCE/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Bill Payment/CREDIT CARD/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
-    // Salary and Credits
-    "Salary Credit/IDFC BANK",
-    "Interest Credit/IDFC BANK",
-    "FD Maturity/IDFC BANK",
-    "Dividend Credit/IDFC BANK",
-    "Refund Credit/IDFC BANK",
-    "Cashback Credit/IDFC BANK",
-    "Reward Points Credit/IDFC BANK",
+    // Salary and Credits with business context
+    `Salary Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Interest Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `FD Maturity/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Dividend Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Refund Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Cashback Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Reward Points Credit/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // Mobile Recharges
-    "Mobile Recharge/Airtel/IDFC BANK",
-    "Mobile Recharge/Jio/IDFC BANK",
-    "Mobile Recharge/Vi/IDFC BANK",
-    "Mobile Recharge/BSNL/IDFC BANK",
+    `Mobile Recharge/AIRTEL/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/JIO/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/VI/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Mobile Recharge/BSNL/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // Investment and Trading
-    "Mutual Fund Investment/IDFC BANK",
-    "Stock Trading/IDFC BANK",
-    "SIP Investment/IDFC BANK",
-    "Gold Investment/IDFC BANK",
+    `Mutual Fund Investment/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Stock Trading/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `SIP Investment/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Gold Investment/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
     
     // International Transactions
-    "International Transfer/IDFC BANK",
-    "Foreign Exchange/IDFC BANK",
-    "International Card Usage/IDFC BANK",
+    `International Transfer/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `Foreign Exchange/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `International Card Usage/IDFC BANK/MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
   ];
   return descs[randomInt(0, descs.length - 1)];
 }
@@ -294,6 +295,7 @@ function generateICICIData(count: number) {
     [20000, 50000], // Very large transactions
   ];
   
+  // Generate data in chronological order (oldest first) for correct balance calculation
   for (let i = 0; i < count; i++) {
     const txnDate = new Date(lastDate.getTime() - randomInt(1, 72) * 60 * 60 * 1000); // 1-72 hours earlier
     lastDate = txnDate;
@@ -305,7 +307,16 @@ function generateICICIData(count: number) {
     const amountRange = amountRanges[randomInt(0, amountRanges.length - 1)];
     const amount = randomInt(amountRange[0], amountRange[1]);
     
-    balance = crdr === "CR" ? balance + amount : balance - amount;
+    // Calculate balance BEFORE adding the transaction
+    const previousBalance = balance;
+    
+    // Update balance based on transaction type
+    if (crdr === "CR") {
+      balance += amount; // Credit increases balance
+    } else {
+      balance -= amount; // Debit decreases balance
+    }
+    
     data.push({
       "No.": i + 1,
       "Transaction ID": randomTxnId(),
@@ -315,9 +326,11 @@ function generateICICIData(count: number) {
       "Description": randomDescICICI(),
       "CR/DR": crdr,
       "Transaction Amount(₹)": formatAmount(amount),
-      "Available Balance(₹)": formatAmount(balance),
+      "Available Balance(₹)": formatAmount(balance), // This is the balance AFTER the transaction
     });
   }
+  
+  // Sort by date in descending order (latest first) for display
   return data.sort((a, b) => {
     function parsePostedDate(str: string) {
       const [datePart, timePart, ampm] = str.split(/\s+/);
@@ -346,6 +359,7 @@ function generateIDFCData(count: number) {
     [20000, 50000], // Very large transactions
   ];
   
+  // Generate data in chronological order (oldest first) for correct balance calculation
   for (let i = 0; i < count; i++) {
     const txnDate = new Date(lastDate.getTime() - randomInt(1, 72) * 60 * 60 * 1000); // 1-72 hours earlier
     lastDate = txnDate;
@@ -356,7 +370,13 @@ function generateIDFCData(count: number) {
     const amountRange = amountRanges[randomInt(0, amountRanges.length - 1)];
     const amount = randomInt(amountRange[0], amountRange[1]);
     
-    balance = crdr === "CR" ? balance + amount : balance - amount;
+    // Update balance based on transaction type
+    if (crdr === "CR") {
+      balance += amount; // Credit increases balance
+    } else {
+      balance -= amount; // Debit decreases balance
+    }
+    
     data.push({
       "Transaction Date": formatDateIDFC(txnDate),
       "Value Date": formatDateIDFC(valueDate),
@@ -364,9 +384,11 @@ function generateIDFCData(count: number) {
       "Cheque No.": randomChequeNo(),
       "Debit": crdr === "DR" ? formatAmount(amount) : "",
       "Credit": crdr === "CR" ? formatAmount(amount) : "",
-      "Balance": formatAmount(balance),
+      "Balance": formatAmount(balance), // This is the balance AFTER the transaction
     });
   }
+  
+  // Sort by date in descending order (latest first) for display
   return data.sort((a, b) => {
     function parseDate(str: string) {
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -396,36 +418,51 @@ function formatValueDateHDFC(date: Date) {
   return `${d}/${m}/${y}`;
 }
 function randomNarrationHDFC() {
+  const businessTerms = [
+    "SALARY", "RAW MATERIAL", "SALES", "PACKAGING EXP", "LOGISTIC EXP", "RENT", "UTILITIES", 
+    "MARKETING", "ADVERTISING", "INSURANCE", "MAINTENANCE", "REPAIRS", "CONSULTING", 
+    "LEGAL FEES", "ACCOUNTING", "TRAVEL EXP", "MEALS", "OFFICE SUPPLIES", "EQUIPMENT", 
+    "SOFTWARE", "LICENSING", "COMMISSION", "BONUS", "REFUND", "CASHBACK", "REWARDS",
+    "INVOICE", "PAYMENT", "SETTLEMENT", "ADVANCE", "LOAN", "EMI", "INTEREST", "DIVIDEND",
+    "INVESTMENT", "MUTUAL FUND", "STOCK TRADING", "GOLD", "FOREIGN EXCHANGE"
+  ];
+  
   const narrs = [
-    // UPI
-    "UPI-XXXXXXXXXX-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953",
-    "UPI-MYNTRA-XXXXXXXXXX-INHUB-AXISCN0582678953",
-    "UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-ICICI",
-    "UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-TEST",
-    "UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-PAYMENT",
-    "UPI-DBAND-9001PLZ-UPI-EDAPY SOFTWARE PRIVATE LIMITED-UPI-AXISCN0582678956 SHIPPING BAG",
-    // NEFT
-    "NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953",
-    "NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-LOAN",
-    "NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-EMI",
-    // IMPS
-    "IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-INTERNAL",
-    "IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-EXTERNAL",
-    // RTGS
-    "RTGS-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953",
-    // ACH
-    "ACH-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953",
-    // Facebook/Google/Other
-    "UPI-WWW.FACEBOOK.COM-ACC:FACEBOOKMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION",
-    "UPI-WWW.GOOGLE.COM-ACC:GOOGLEMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION",
-    "UPI-WWW.AMAZON.COM-ACC:AMAZONMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION",
-    // Misc
-    "UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND",
-    "UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-CASHBACK",
-    "UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REWARD",
-    "NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND",
-    "IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-REFUND",
-    "RTGS-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND",
+    // UPI with business messages
+    `UPI-XXXXXXXXXX-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-MYNTRA-XXXXXXXXXX-INHUB-AXISCN0582678953-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-ICICI-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-TEST-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-UMESH KEDIA-9953642992-ICIC0000399-1234567890-PAYMENT-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-DBAND-9001PLZ-UPI-EDAPY SOFTWARE PRIVATE LIMITED-UPI-AXISCN0582678956 SHIPPING BAG-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // NEFT with business messages
+    `NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-LOAN-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-EMI-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // IMPS with business messages
+    `IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-INTERNAL-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-EXTERNAL-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // RTGS with business messages
+    `RTGS-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // ACH with business messages
+    `ACH-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Facebook/Google/Other with business messages
+    `UPI-WWW.FACEBOOK.COM-ACC:FACEBOOKMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-WWW.GOOGLE.COM-ACC:GOOGLEMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-WWW.AMAZON.COM-ACC:AMAZONMANAGER/PAID/UPI-ICIC0000399-XXXXXXXXXX-UPI TRANSACTION-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    
+    // Misc with business messages
+    `UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-CASHBACK-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `UPI-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REWARD-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `NEFT-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `IMPS-4111111111-INHUB-ICIC0000399-XXXXXXXXXX-REFUND-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
+    `RTGS-CHQ-UMOB1562-RAZORPAY SOFTWARE PRIVATE LIMITED-INHUB-AXISCN0582678953-REFUND-MSG:${businessTerms[randomInt(0, businessTerms.length - 1)]}`,
   ];
   return narrs[randomInt(0, narrs.length - 1)].replace(/X{6,}/g, () => randomInt(100000, 999999).toString());
 }
@@ -436,6 +473,8 @@ function generateHDFCData(count: number) {
   let balance = randomInt(10000, 100000);
   const data = [];
   let lastDate = new Date();
+  
+  // Generate data in chronological order (oldest first) for correct balance calculation
   for (let i = 0; i < count; i++) {
     const txnDate = new Date(lastDate.getTime() - randomInt(1, 72) * 60 * 60 * 1000);
     lastDate = txnDate;
@@ -444,13 +483,16 @@ function generateHDFCData(count: number) {
     const amount = randomInt(100, 50000);
     let withdrawal = "";
     let deposit = "";
+    
+    // Update balance based on transaction type
     if (isDeposit) {
       deposit = amount.toString();
-      balance += amount;
+      balance += amount; // Deposit increases balance
     } else {
       withdrawal = amount.toString();
-      balance -= amount;
+      balance -= amount; // Withdrawal decreases balance
     }
+    
     data.push({
       "Date": formatDateHDFC(txnDate),
       "Narration": randomNarrationHDFC(),
@@ -458,10 +500,11 @@ function generateHDFCData(count: number) {
       "Value Dt": formatValueDateHDFC(valueDate),
       "Withdrawal Amt.": withdrawal,
       "Deposit Amt.": deposit,
-      "Closing Balance": balance,
+      "Closing Balance": balance, // This is the balance AFTER the transaction
     });
   }
-  // Sort by date descending
+  
+  // Sort by date in descending order (latest first) for display
   return data.sort((a, b) => {
     const [da, ma, ya] = a["Date"].split("/").map(Number);
     const [db, mb, yb] = b["Date"].split("/").map(Number);
@@ -522,8 +565,8 @@ export default function Home() {
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Cheque/Ref. No."]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Description"]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["CR/DR"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(INR)"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(INR)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(₹)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(₹)"]}</td>
         </>
       );
     } else if (bank === "IDFC") {
