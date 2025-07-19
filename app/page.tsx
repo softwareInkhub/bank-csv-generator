@@ -325,8 +325,8 @@ function generateICICIData(count: number) {
       "Cheque/Ref. No.": randomChequeNo(),
       "Description": randomDescICICI(),
       "CR/DR": crdr,
-      "Transaction Amount(₹)": formatAmount(amount),
-      "Available Balance(₹)": formatAmount(balance), // This is the balance AFTER the transaction
+      "Transaction Amount(INR)": formatAmount(amount),
+      "Available Balance(INR)": formatAmount(balance), // This is the balance AFTER the transaction
     });
   }
   
@@ -546,7 +546,7 @@ export default function Home() {
 
   const getTableHeaders = () => {
     if (bank === "ICICI") {
-      return ["No.", "Transaction ID", "Value Date", "Txn Posted Date", "Cheque/Ref. No.", "Description", "CR/DR", "Transaction Amount(₹)", "Available Balance(₹)"];
+      return ["No.", "Transaction ID", "Value Date", "Txn Posted Date", "Cheque/Ref. No.", "Description", "CR/DR", "Transaction Amount(INR)", "Available Balance(INR)"];
     } else if (bank === "IDFC") {
       return ["Transaction Date", "Value Date", "Particulars", "Cheque No.", "Debit", "Credit", "Balance"];
     } else {
@@ -565,8 +565,8 @@ export default function Home() {
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Cheque/Ref. No."]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Description"]}</td>
           <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["CR/DR"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(₹)"]}</td>
-          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(₹)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Transaction Amount(INR)"]}</td>
+          <td className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-sm border-b border-gray-200">{row["Available Balance(INR)"]}</td>
         </>
       );
     } else if (bank === "IDFC") {
